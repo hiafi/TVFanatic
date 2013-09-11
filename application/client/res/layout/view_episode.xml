@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/episode_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/episode_upper_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/very_light_grey" >
+
+        <ImageView
+            android:id="@+id/episode_show_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/episode_show_image_desc"
+            android:src="@drawable/empty_photo" />
+
+        <FrameLayout
+            android:id="@+id/episode_ratings_border"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/medium_grey"
+            android:paddingLeft="2dp" >
+
+            <LinearLayout
+                android:id="@+id/episode_ratings_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@color/very_light_grey"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/episode_season_avg_rating_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/episode_season_average_label"
+                    android:textColor="@color/medium_grey"
+                    android:textSize="@dimen/font_size_medium" />
+
+                <RatingBar
+                    android:id="@+id/episode_season_avg_rating"
+                    style="@style/tvfRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:isIndicator="true"
+                    android:rating="4.5"
+                    android:stepSize=".2" />
+
+                <TextView
+                    android:id="@+id/episode_rating_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/this_episode_label"
+                    android:textColor="@color/medium_grey"
+                    android:textSize="@dimen/font_size_medium" />
+
+                <RatingBar
+                    android:id="@+id/episode_this_episode_rating"
+                    style="@style/tvfRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:isIndicator="true"
+                    android:rating="4.2"
+                    android:stepSize=".2" />
+
+                <TextView
+                    android:id="@+id/episode_your_rating_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/your_rating_label"
+                    android:textColor="@color/medium_grey"
+                    android:textSize="@dimen/font_size_medium" />
+
+                <RatingBar
+                    android:id="@+id/episode_your_rating"
+                    style="@style/tvfRatingBarLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:isIndicator="false"
+                    android:rating="4"
+                    android:stepSize="1" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/episode_show_info_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/episode_ratings_border"
+            android:layout_toRightOf="@id/episode_show_image"
+            android:background="@color/very_light_grey"
+            android:paddingLeft="@dimen/show_padding_left_right"
+            android:paddingRight="@dimen/show_padding_left_right" >
+
+            <TextView
+                android:id="@+id/episode_show_title_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/show_title_holder"
+                android:textColor="@color/medium_grey"
+                android:textSize="@dimen/font_size_large"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/episode_season_and_number_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/common_text_gap"
+                android:layout_toRightOf="@id/episode_show_title_label"
+                android:text="@string/episode_season_and_number_holder"
+                android:textColor="@color/medium_grey"
+                android:textSize="@dimen/font_size_large" />
+
+            <TextView
+                android:id="@+id/episode_title_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/episode_show_title_label"
+                android:layout_marginRight="@dimen/show_title_years_gap"
+                android:text="@string/episode_title_holder"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/show_title_font_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/episode_description_label"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/episode_title_label"
+                android:layout_marginTop="@dimen/show_common_top_margin"
+                android:text="@string/episode_description_holder" />
+
+            <Button
+                android:id="@+id/episode_review_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/review_button_label" />
+
+            <TextView
+                android:id="@+id/episode_air_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/episode_season_and_number_label"
+                android:text="@string/episode_air_date_holder"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/medium_grey" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/episode_review_summary_border"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/medium_grey"
+        android:paddingTop="2dp" >
+
+        <ListView
+            android:id="@+id/episode_review_summary_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/review_padding"
+            android:layout_marginRight="@dimen/review_padding"
+            android:background="@color/very_light_grey"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/review_padding" >
+
+        </ListView>
+    </FrameLayout>
+
+</LinearLayout>

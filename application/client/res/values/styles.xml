@@ -1,0 +1,17 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Light" />
+
+    <style name="tvfRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingstars</item>
+        <item name="android:minHeight">22dip</item>
+        <item name="android:maxHeight">22dip</item>
+    </style>
+
+    <style name="tvfRatingBarLarge" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingstars_large</item>
+        <item name="android:minHeight">33dip</item>
+        <item name="android:maxHeight">33dip</item>
+    </style>
+    
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/show_season_inner_border"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/medium_grey"
+    android:paddingLeft="@dimen/border_thin"
+    android:paddingRight="@dimen/border_thin" >
+
+    <RelativeLayout
+        android:id="@+id/show_season_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white" >
+
+        <TextView
+            android:id="@+id/show_season_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@color/medium_grey"
+            android:paddingBottom="@dimen/season_vert_padding"
+            android:paddingLeft="@dimen/season_horiz_padding"
+            android:paddingRight="@dimen/season_horiz_padding"
+            android:paddingTop="@dimen/season_vert_padding"
+            android:text="@string/show_season_holder"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_large"
+            android:textStyle="bold" />
+
+        <GridView
+            android:id="@+id/show_season_episode_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/show_season_label"
+            android:layout_margin="10dp"
+            android:horizontalSpacing="6dp"
+            android:numColumns="4"
+            android:verticalSpacing="6dp" >
+        </GridView>
+
+        <TextView
+            android:id="@+id/show_season_help_season"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/show_season_episode_grid"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/medium_grey"
+            android:text="@string/swipe_season_help" />
+
+    </RelativeLayout>
+
+</FrameLayout>

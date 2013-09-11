@@ -1,0 +1,273 @@
+package edu.wwu.cs412.tvfanatic;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import edu.wwu.cs412.tvfanatic.account.Account;
+import edu.wwu.cs412.tvfanatic.http.AsyncTaskCompleteListener;
+import edu.wwu.cs412.tvfanatic.http.GETRequestTask;
+import edu.wwu.cs412.tvfanatic.http.POSTRequestTask;
+import edu.wwu.cs412.tvfanatic.util.DateUtil;
+import edu.wwu.cs412.tvfanatic.util.ImageUtil;
+import edu.wwu.cs412.tvfanatic.util.StringUtil;
+
+import android.R.string;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
+import android.widget.TextView;
+
+public class ViewEpisode extends SearchBar {
+	private ProgressDialog pDialog;
+	private ArrayList<Review> reviewsArrayList;
+	private ReviewArrayAdapter reviewArrayAdapter;
+	private String writeReviewUrl;
+	private String url;
+	private String show_id;
+	private String season_id;
+	private String episode_id;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		pDialog = ProgressDialog.show(this, "Downloading...",
+				"TV Fanatic is busy fetching your episode's data!", true, false);
+		setContentView(R.layout.view_episode);
+		
+		reviewsArrayList = new ArrayList<Review>();
+		
+		// Scrolling summary textview
+		((TextView)findViewById(R.id.episode_description_label)).setMovementMethod(new ScrollingMovementMethod());
+		
+		RatingBar rb = (RatingBar)findViewById(R.id.episode_your_rating);
+		rb.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+			public void onRatingChanged(RatingBar ratingBar, float rating,
+					boolean fromUser) {
+					
+					if (fromUser)
+					{
+						setRating(rating);
+					}
+				}
+		});
+		
+		// Load Data
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			url = extras.getString(Constants.TVF_PACKAGE + ".episode_url");
+			String show = extras.getString(Constants.TVF_PACKAGE + ".show_title");
+			((TextView)findViewById(R.id.episode_show_title_label)).setText(show);
+			sendRequest();
+			String episodeTitle = extras.getString(Constants.TVF_PACKAGE + ".episode_title");
+			TextView episodeTitleView = (TextView) findViewById(R.id.episode_title_label);
+			episodeTitleView.setText(episodeTitle);
+		}
+		
+		reviewArrayAdapter = new ReviewArrayAdapter(this, R.layout.review_list_item, reviewsArrayList);
+		ListView reviewSummaryView = (ListView) findViewById(R.id.episode_review_summary_list_view);
+		reviewSummaryView.setAdapter(reviewArrayAdapter);
+		reviewSummaryView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(ViewEpisode.this, ViewReview.class);
+				intent.putExtra(Constants.TVF_PACKAGE + ".url", reviewsArrayList.get(position).review_url);
+				startActivity(intent);
+			}
+		});
+		
+		
+	}
+	
+	public void sendRequest()
+	{
+		GETRequestTask task = new GETRequestTask(url + "?" + Account.getLoggedInUser().getSecretQueryString(),
+				new AsyncTaskCompleteListener<JSONObject>() {
+					public void onTaskComplete(JSONObject result) {
+						try
+						{
+							setEpisodeData(result);
+							setReviewData(result);
+						}
+						catch (IllegalArgumentException e)
+						{
+							e.printStackTrace();
+						}
+					}
+				});
+		task.execute();
+	}
+	
+	private void setRating(float rating)
+	{
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		
+		String rating_url = String.format("%srate/%s/%s/%s", Constants.API_URL, show_id, season_id, episode_id);
+		Log.v("url", rating_url);
+		
+		String user = Account.getLoggedInUser().getSecret();
+		params.add(new BasicNameValuePair("rating", Float.toString(rating)));
+		params.add(new BasicNameValuePair("user_secret", user));
+		Log.v("user", user);
+		POSTRequestTask task = new POSTRequestTask(rating_url, params,
+				new AsyncTaskCompleteListener<JSONObject>() {
+					public void onTaskComplete(JSONObject result) {
+						Log.v("result", result.toString());
+						sendRequest();
+					}
+				}
+			);
+		task.execute();
+	}
+	
+	private void setReviewData(JSONObject j) {
+		try {
+			reviewArrayAdapter.clear();
+			reviewArrayAdapter.notifyDataSetChanged();
+			JSONArray xArray = j.getJSONArray("ownReview");
+			for (int i=0; i < xArray.length(); i += 1) {
+				JSONObject x = (JSONObject) xArray.get(i);
+				Review review = new Review();
+				review.review_url = x.getString("review_url");
+				review.review_id = x.getString("id");
+		        review.title = StringUtil.truncate(x.getString("title"), 40, true);
+		        review.user = x.getString("user");
+		        review.agree_pct = "";
+		        if (!x.isNull("agree_pct")) {
+		        	review.agree_pct = String.format("%.2f", x.getDouble("agree_pct") * 100.0);
+		        }
+		        review.content = StringUtil.truncate(x.getString("content"), 400, true);
+		        review.posted_at = DateUtil.fromTvdbFormat(x.getString("posted_at")).toString();
+		        review.comment_count = x.getString("comment_count");
+		        
+			    reviewsArrayList.add( review );
+			}
+			reviewArrayAdapter.notifyDataSetChanged();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void startWriteReview(JSONObject j)
+	{
+		Intent intent = new Intent(ViewEpisode.this, WriteReview.class);
+		intent.putExtra(Constants.TVF_PACKAGE + ".url", this.writeReviewUrl);
+		intent.putExtra(Constants.TVF_PACKAGE + ".json", j.toString());
+		intent.putExtra(Constants.TVF_PACKAGE + ".show_title", 
+				((TextView)findViewById(R.id.episode_show_title_label)).getText());
+		startActivity(intent);
+	}
+	
+	private void setEpisodeData(JSONObject j) {
+		try {
+			this.writeReviewUrl = j.getString("post_review_url");
+			Log.v("WriteReviewUrl: ", this.writeReviewUrl);
+			
+			// Review Button
+			View reviewButton = findViewById(R.id.episode_review_button);
+			final JSONObject json = j;
+			reviewButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					startWriteReview(json);
+				}
+			});
+			
+			this.show_id = j.getString("show_id");
+			this.season_id = j.getString("season");
+			this.episode_id = j.getString("number");
+			
+			((TextView)findViewById(R.id.episode_title_label)).setText(j.getString("title"));
+			((TextView)findViewById(R.id.episode_season_and_number_label)).setText("S" + season_id + " E" + episode_id);
+			Log.v("season", j.getString("season"));
+			((TextView)findViewById(R.id.episode_air_date_label)).setText(j.getString("date_aired"));
+			((TextView)findViewById(R.id.episode_description_label)).setText(j.getString("summary"));
+			Bitmap bm = ImageUtil.fromBase64(j.getString("image"));
+			((ImageView)findViewById(R.id.episode_show_image)).setImageBitmap(bm);
+			((RatingBar)findViewById(R.id.episode_this_episode_rating)).setRating(Float.parseFloat(j.getString("rating")));
+			
+			String ratingStr = j.getString("me_rating");
+			if (ratingStr != null && !ratingStr.isEmpty())
+				((RatingBar)findViewById(R.id.episode_your_rating)).setRating(Float.parseFloat(ratingStr));
+			
+			String seasonRatingStr = j.getString("season_rating");
+			if (seasonRatingStr != null && !seasonRatingStr.isEmpty())
+				((RatingBar)findViewById(R.id.episode_season_avg_rating)).setRating(Float.parseFloat(seasonRatingStr));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (pDialog != null) {
+			pDialog.dismiss();
+		}
+	}
+	
+	private class Review {
+		public String review_id;
+		public String review_url;
+		public String title;
+		public String user;
+		public String agree_pct;
+		public String content;
+		public String posted_at;
+		public String comment_count;
+	}
+	
+	private class ReviewArrayAdapter extends ArrayAdapter<Review> {
+		private List<Review> reviews;
+		private Context context;
+		private int resource;
+		
+		public ReviewArrayAdapter(Context context, int resource, List<Review> objects) {
+			super(context, resource, objects);
+			reviews = objects;
+			this.context = context;
+			this.resource = resource;
+		}
+		
+		@Override
+	    public View getView(int position, View convertView, ViewGroup parent) {
+			View row = convertView;
+	        if(row == null)
+	        {
+	            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+	            row = inflater.inflate(resource, parent, false);
+	        }
+	        
+	        Review review = reviews.get(position);
+	        
+	        ((TextView) row.findViewById(R.id.review_list_item_title)).setText(review.title);
+	        ((TextView) row.findViewById(R.id.review_list_item_author)).setText("By " + review.user);
+	        ((TextView) row.findViewById(R.id.review_list_item_agrees)).setText("");
+	        if (!review.agree_pct.isEmpty()) {
+	        	((TextView) row.findViewById(R.id.review_list_item_agrees)).setText(review.agree_pct + " agree");
+	        }
+	        ((TextView) row.findViewById(R.id.review_list_item_content)).setText(review.content);
+	        ((TextView) row.findViewById(R.id.review_list_item_date)).setText(review.posted_at);
+	        ((TextView) row.findViewById(R.id.review_list_item_comments)).setText(review.comment_count + " comments");
+	        
+	        return row;
+		}
+	}
+}

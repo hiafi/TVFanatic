@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="home_primary_fragment_width">520dp</dimen>
+    <dimen name="home_recently_viewed_width">240dp</dimen>
+    <dimen name="show_padding_left_right">5dp</dimen>
+    <dimen name="show_title_font_size">20sp</dimen>
+    <dimen name="show_title_years_gap">60dp</dimen>
+    <dimen name="show_first_column_width">120dp</dimen>
+    <dimen name="show_years_top_padding">20dp</dimen>
+    <dimen name="show_common_top_margin">8dp</dimen>
+    <dimen name="season_horiz_padding">40dp</dimen>
+    <dimen name="season_vert_padding">7dp</dimen>
+    <dimen name="rating_bar_height">30dp</dimen>
+    <dimen name="season_episode_num_gap">8dp</dimen>
+    <dimen name="review_show_image_height">160dp</dimen>
+    <dimen name="common_text_gap">8dp</dimen>
+    <dimen name="plus_button_size">32dp</dimen>
+    <dimen name="comments_collapse_button_width">20dp</dimen>
+    <dimen name="comments_gap">6dp</dimen>
+    <dimen name="font_size_medium_small">14sp</dimen>
+    <dimen name="font_size_medium">18sp</dimen>
+    <dimen name="font_size_large">24sp</dimen>
+    <dimen name="font_size_very_large">32sp</dimen>
+    <dimen name="write_review_horiz_margin">30dp</dimen>
+    <dimen name="agree_button_width">110dp</dimen>
+    <dimen name="agree_button_height">35dp</dimen>
+    <dimen name="review_padding">10dp</dimen>
+    <dimen name="border_thin">2dp</dimen>
+    <dimen name="border">4dp</dimen>
+
+</resources>

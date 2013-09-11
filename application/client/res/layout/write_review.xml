@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/write_review_table_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/write_review_horiz_margin"
+    android:layout_marginRight="@dimen/write_review_horiz_margin"
+    android:stretchColumns="1" >
+
+    <TableRow
+        android:id="@+id/write_review_reviewing_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/write_review_reviewing_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common_text_gap"
+            android:text="@string/write_review_reviewing_text"
+            android:textSize="@dimen/font_size_medium"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/write_review_reviewing_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/write_review_reviewing_holder"
+            android:textColor="@color/medium_grey"
+            android:textSize="@dimen/font_size_large" />
+
+        <Button
+            android:id="@+id/write_review_done_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done_text" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/write_review_title_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/write_review_title_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/write_review_title_label"
+            android:textSize="@dimen/font_size_medium"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/write_review_title_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:ems="10"
+            android:hint="@string/write_review_title_hint"
+            android:inputType="textCapSentences" >
+
+            <requestFocus />
+        </EditText>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/write_review_content_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <EditText
+            android:id="@+id/write_review_content_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_span="3"
+            android:ems="10"
+            android:gravity="top|left"
+            android:hint="@string/write_review_content_hint"
+            android:inputType="textCapSentences|textMultiLine" />
+
+    </TableRow>
+
+</TableLayout>

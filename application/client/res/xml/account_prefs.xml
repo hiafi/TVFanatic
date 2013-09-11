@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="account_preferences"
+    android:title="@string/account_prefs_title"
+    android:summary="@string/account_prefs_summary" >
+    
+    <EditTextPreference
+        android:key="account_display_name_preference"
+        android:title="@string/account_display_name_title"
+        android:summary="@string/account_display_name_summary"
+        android:dialogTitle="@string/account_display_name_dialog_title" />
+    
+    <CheckBoxPreference
+        android:key="account_allow_comments_preference"
+        android:title="@string/account_allow_comments_title"
+        android:summary="@string/account_allow_comments_summary"
+        android:dialogTitle="@string/account_allow_comments_dialog_title"
+        android:defaultValue="true" />
+    
+</PreferenceScreen>

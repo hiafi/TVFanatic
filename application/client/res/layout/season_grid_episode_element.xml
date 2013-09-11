@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/show_epi_border"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/medium_grey"
+    android:padding="@dimen/border_thin" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp" >
+
+        <TextView
+            android:id="@+id/show_epi_number"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/view_show_epi_elem_number"
+            android:textColor="@color/medium_grey"
+            android:textSize="@dimen/font_size_large" />
+
+        <TextView
+            android:id="@+id/show_epi_date_aired"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="27dp"
+            android:text="@string/view_show_epi_date_aired_holder"
+            android:textColor="@color/medium_grey" />
+
+        <TextView
+            android:id="@+id/show_epi_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="6dp"
+            android:layout_toRightOf="@+id/show_epi_number"
+            android:text="@string/view_show_epi_title_holder"
+            android:textSize="@dimen/font_size_medium" />
+
+        <TextView
+            android:id="@+id/show_epi_num_reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/show_epi_title"
+            android:layout_alignParentBottom="false"
+            android:layout_below="@id/show_epi_title"
+            android:layout_marginTop="6dp"
+            android:text="@string/view_show_epi_num_reviews_holder" />
+
+    </RelativeLayout>
+
+</FrameLayout>

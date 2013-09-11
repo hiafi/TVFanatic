@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/write_comment_table_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/write_review_horiz_margin"
+    android:layout_marginRight="@dimen/write_review_horiz_margin"
+    android:background="@color/very_light_grey"
+    android:stretchColumns="1" >
+
+    <TableRow
+        android:id="@+id/write_comment_header_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:focusable="true" >
+
+        <TextView
+            android:id="@+id/write_comment_header_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common_text_gap"
+            android:text="@string/write_comment_commenting_text"
+            android:textSize="@dimen/font_size_medium"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/write_comment_header_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comment_target_review"
+            android:textColor="@color/medium_grey"
+            android:textSize="@dimen/font_size_large" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/write_comment_content_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <EditText
+            android:id="@+id/write_comment_content_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_span="4"
+            android:ems="10"
+            android:gravity="top|left"
+            android:hint="@string/write_comment_content_hint"
+            android:inputType="textCapSentences|textMultiLine" />
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/write_comment_finished_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/write_comment_done_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done_text" />
+    </TableRow>
+
+</TableLayout>

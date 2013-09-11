@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/show_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:descendantFocusability="beforeDescendants"
+	android:focusableInTouchMode="true" >
+
+    <RelativeLayout
+        android:id="@+id/show_upper_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.98"
+        android:background="@color/white" >
+
+        <ImageView
+            android:id="@+id/show_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/empty_photo" />
+
+        <FrameLayout
+            android:id="@+id/show_upper_right_border"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/medium_grey"
+            android:paddingLeft="@dimen/border" >
+
+            <LinearLayout
+                android:id="@+id/show_upper_right_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/show_add_to_favorites_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/add_to_favorites" />
+
+                <android.widget.Space
+                    android:id="@+id/space1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/show_average_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/show_series_average_label"
+                    android:textColor="@color/medium_grey"
+                    android:textSize="@dimen/font_size_medium" />
+
+                <RatingBar
+                    android:id="@+id/show_average_rating"
+                    style="@style/tvfRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:isIndicator="true"
+                    android:rating="4.5"
+                    android:stepSize=".2" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/show_info_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/show_upper_right_border"
+            android:layout_toRightOf="@+id/show_image"
+            android:paddingLeft="@dimen/show_padding_left_right"
+            android:paddingRight="@dimen/show_padding_left_right" >
+
+            <TextView
+                android:id="@+id/show_title_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/show_title_years_gap"
+                android:text="@string/show_title_holder"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/show_starring_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/show_title_label"
+                android:layout_marginTop="@dimen/show_common_top_margin"
+                android:text="@string/show_starring_label_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:width="@dimen/show_first_column_width" />
+
+            <TextView
+                android:id="@+id/show_actors_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/show_starring_label"
+                android:layout_marginTop="@dimen/show_common_top_margin"
+                android:layout_toRightOf="@id/show_starring_label"
+                android:scrollHorizontally="true"
+                android:text="@string/show_actors_holder"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/show_description_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/show_starring_label"
+                android:layout_marginTop="@dimen/show_common_top_margin"
+                android:text="@string/show_description_holder" />
+
+            <TextView
+                android:id="@+id/show_years_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/show_title_label"
+                android:text="@string/show_year_holder"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/medium_grey" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/show_season_border"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="@color/medium_grey"
+        android:paddingTop="@dimen/border" >
+        
+        <android.support.v4.view.ViewPager
+            android:id="@+id/show_season_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white" >
+        </android.support.v4.view.ViewPager>
+        
+    </FrameLayout>
+
+</LinearLayout>

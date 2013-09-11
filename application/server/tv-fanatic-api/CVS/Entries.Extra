@@ -1,0 +1,17 @@
+/.htaccess////*////
+/LICENSE////*////
+/composer.json////*////
+/phpunit.xml.dist////*////
+/rb.php////*////
+D/.idea////////
+D/Slim////////
+D/routes////////
+D/tests////////
+/db_config.php////*////
+/shows.txt////*////
+/README.markdown////*////
+/index.php////*////
+/.DS_Store////*////
+/SimpleImage.php////*////
+/helpers.php////*////
+/prepopulate_shows.php////*////

@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:descendantFocusability="beforeDescendants"
+	android:focusableInTouchMode="true" >
+
+    <LinearLayout
+        android:id="@+id/home_upper_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <fragment
+            android:id="@+id/my_reviews_fragment"
+            android:name="edu.wwu.cs412.tvfanatic.home.MyReviewsFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout="@layout/home_my_reviews" />
+
+        <fragment
+            android:id="@+id/recent_comments_fragment"
+            android:name="edu.wwu.cs412.tvfanatic.home.RecentCommentsFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout="@layout/home_recent_comments" />
+
+        <fragment
+            android:id="@+id/recently_viewed_fragment"
+            android:name="edu.wwu.cs412.tvfanatic.home.RecentlyViewedFragment"
+            android:layout_width="126px"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            tools:layout="@layout/home_recently_viewed" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/home_lower_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <fragment
+            android:id="@+id/my_favorites_fragment"
+            android:name="edu.wwu.cs412.tvfanatic.home.MyFavoritesFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/home_my_favorites" />
+    </FrameLayout>
+
+</LinearLayout>

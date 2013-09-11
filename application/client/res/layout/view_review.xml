@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/review_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/review_vertical_split"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/review_upper_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/show_padding_left_right"
+            android:paddingRight="@dimen/show_padding_left_right" >
+
+            <FrameLayout
+                android:id="@+id/review_agree_border"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/medium_grey"
+                android:padding="2dp" >
+
+                <RelativeLayout
+                    android:id="@+id/review_agree_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey"
+                    android:padding="@dimen/common_text_gap" >
+
+                    <TextView
+                        android:id="@+id/review_agree_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/common_text_gap"
+                        android:text="@string/review_agree_label_holder"
+                        android:textSize="@dimen/font_size_medium" />
+
+                    <Button
+                        android:id="@+id/review_agree_button"
+                        android:layout_width="@dimen/agree_button_width"
+                        android:layout_height="@dimen/agree_button_height"
+                        android:layout_below="@id/review_agree_label"
+                        android:background="@color/green"
+                        android:text="@string/review_agree_button_text"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/review_disagree_button"
+                        android:layout_width="@dimen/agree_button_width"
+                        android:layout_height="@dimen/agree_button_height"
+                        android:layout_alignBaseline="@id/review_agree_button"
+                        android:layout_below="@id/review_agree_label"
+                        android:layout_marginLeft="@dimen/common_text_gap"
+                        android:layout_toRightOf="@id/review_agree_button"
+                        android:background="@color/red"
+                        android:text="@string/review_disagree_button_text"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/review_show_image"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/review_show_image_height"
+                android:scaleType="fitStart"
+                android:src="@drawable/empty_photo" />
+
+            <TextView
+                android:id="@+id/review_show_title_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/review_show_image"
+                android:text="@string/show_title_holder"
+                android:textColor="@color/medium_grey"
+                android:textSize="@dimen/font_size_large"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/review_episode_title_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/review_show_title_label"
+                android:layout_below="@+id/review_show_title_label"
+                android:text="@string/episode_title_holder"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_large" />
+
+            <TextView
+                android:id="@+id/review_season_and_number_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/common_text_gap"
+                android:layout_toRightOf="@+id/review_show_title_label"
+                android:text="@string/episode_season_and_number_holder"
+                android:textColor="@color/medium_grey"
+                android:textSize="@dimen/font_size_large" />
+
+            <TextView
+                android:id="@+id/review_episode_air_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="29dp"
+                android:layout_toRightOf="@+id/review_season_and_number_label"
+                android:text="@string/episode_air_date_holder"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/medium_grey" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/review_lower_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/show_padding_left_right"
+            android:paddingRight="@dimen/show_padding_left_right" >
+
+            <TextView
+                android:id="@+id/review_title_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/review_show_image"
+                android:layout_below="@id/review_show_image"
+                android:layout_marginTop="6dp"
+                android:text="@string/review_title_holder"
+                android:textSize="@dimen/font_size_large"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/review_content_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/review_title_label"
+                android:layout_below="@+id/review_title_label"
+                android:layout_marginTop="10dp"
+                android:text="@string/review_content_holder"
+                android:textSize="@dimen/font_size_medium" />
+
+            <Button
+                android:id="@+id/review_comment_on"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/review_title_label"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/review_comment_on"
+                android:textSize="@dimen/font_size_medium" />
+
+            <TextView
+                android:id="@+id/review_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/review_content_label"
+                android:layout_alignParentRight="true"
+                android:text="@string/review_date_label_holder"
+                android:textColor="@color/medium_grey"
+                android:textSize="@dimen/font_size_medium_small" />
+
+            <TextView
+                android:id="@+id/review_author_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/review_date_label"
+                android:layout_alignBottom="@+id/review_date_label"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/review_date_label"
+                android:text="@string/review_author_holder"
+                android:textColor="@color/medium_grey"
+                android:textSize="@dimen/font_size_medium" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/review_comments_border"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/medium_grey"
+        android:paddingLeft="2dp" >
+
+        <LinearLayout
+            android:id="@+id/review_comments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/medium_grey"
+            android:orientation="vertical" >
+
+            <fragment
+                android:id="@+id/review_comments_fragment"
+                android:name="edu.wwu.cs412.tvfanatic.ViewCommentsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                class="edu.wwu.cs412.tvfanatic.ViewCommentsFragment"
+                tools:layout="@layout/view_comments" />
+
+            <fragment
+                android:id="@+id/review_write_comment_fragment"
+                android:name="edu.wwu.cs412.tvfanatic.ViewCommentsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="2"
+                class="edu.wwu.cs412.tvfanatic.WriteComment"
+                tools:layout="@layout/write_comment" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

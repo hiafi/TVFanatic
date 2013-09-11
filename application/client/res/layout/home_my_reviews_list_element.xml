@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/my_reviews_elem_image"
+        android:layout_width="68dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="4dp"
+        android:src="@drawable/empty_photo" />
+
+    <TextView
+        android:id="@+id/my_reviews_elem_season_episode_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_toRightOf="@+id/my_reviews_elem_image"
+        android:text="TextView"
+        android:textColor="@color/medium_grey" />
+    
+    <TextView
+        android:id="@+id/my_reviews_elem_agree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/my_reviews_elem_season_episode_number"
+        android:layout_marginRight="12dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/my_reviews_elem_episode_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/my_reviews_elem_season_episode_number"
+        android:layout_marginLeft="9dp"
+        android:layout_toRightOf="@+id/my_reviews_elem_season_episode_number"
+        android:text="TextView"
+        android:textColor="@color/medium_grey"
+        android:textStyle="italic" />
+
+    <RelativeLayout
+        android:id="@+id/my_reviews_elem_new_comments_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp" >
+
+        <ImageView
+            android:id="@+id/my_reviews_elem_callout"
+            android:layout_width="48dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/callout" />
+
+        <TextView
+            android:id="@+id/my_reviews_elem_new_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:text="+2"
+            android:textSize="@dimen/font_size_large" />
+
+    </RelativeLayout>
+    
+    <TextView
+        android:id="@+id/my_reviews_elem_review_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_reviews_elem_season_episode_number"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_toLeftOf="@id/my_reviews_elem_new_comments_layout"
+        android:layout_toRightOf="@+id/my_reviews_elem_image"
+        android:text="TextView"
+        android:textSize="@dimen/font_size_medium" />
+
+</RelativeLayout>
